@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:label="Home"
+        tools:layout="@layout/fragment_home"
+        android:name="android.josephhowerton.travelingsalesman.ui.main.home.HomeFragment"/>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard"
+        android:name="android.josephhowerton.travelingsalesman.ui.main.dashboard.DashboardFragment"/>
+    <fragment
+        android:id="@+id/navigation_account"
+        android:label="Account Management"
+        tools:layout="@layout/fragment_account"
+        android:name="android.josephhowerton.travelingsalesman.ui.main.account.AccountFragment"/>
+    <fragment
+        android:id="@+id/navigation_plans"
+        android:label="Planned Trips"
+        tools:layout="@layout/fragment_plans"
+        android:name="android.josephhowerton.travelingsalesman.ui.main.plans.PlansFragment"/>
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:label="User Preferences"
+        android:name="android.josephhowerton.travelingsalesman.ui.main.settings.SettingsFragment"/>
+
+</navigation>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "757208315168",
+    "project_id": "traveling-salesman-ebdfa",
+    "storage_bucket": "traveling-salesman-ebdfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757208315168:android:297914d44151b836a01345",
+        "android_client_info": {
+          "package_name": "android.josephhowerton.travelingsalesman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757208315168-88ipqjcbuil3k3hjanlaci89tbdab7hb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "android.josephhowerton.travelingsalesman",
+            "certificate_hash": "3c6ce2c854f0d9631df854db814d26fbdf7f7a0b"
+          }
+        },
+        {
+          "client_id": "757208315168-i578lk0j5gaok7f4avus7fhvd5jrpk4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSEm2fpymLvF_DpGzo4SIhZVfl9DwAKB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757208315168-i578lk0j5gaok7f4avus7fhvd5jrpk4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

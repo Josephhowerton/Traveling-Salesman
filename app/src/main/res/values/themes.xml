@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TravelingSalesman" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.TravelingSalesman.Authentication" parent="Theme.TravelingSalesman">
+
+    </style>
+
+    <style name="Theme.TravelingSalesman.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
+
+    <style name="Theme.TravelingSalesman.AuthBackground">
+        <item name="android:background">@drawable/white_gradient_background</item>
+    </style>
+
+    <style name="Theme.TravelingSalesman.AuthButtons" parent="Widget.AppCompat.Button">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+    </style>
+
+    <style name="Theme.TravelingSalesman.ButtonStroke" parent="Theme.TravelingSalesman.AuthButtons">
+        <item name="android:background">@drawable/selector_btn_stroke</item>
+    </style>
+    <style name="Theme.TravelingSalesman.ButtonSolid" parent="Theme.TravelingSalesman.AuthButtons">
+        <item name="android:background">@drawable/selector_btn_solid</item>
+    </style>
+</resources>

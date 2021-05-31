@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation"
+    app:startDestination="@id/navigation_auth">
+
+    <fragment
+        android:label="Authentication"
+        android:id="@+id/navigation_auth"
+        tools:layout="@layout/fragment_auth"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.auth.AuthFragment">
+        <action
+            android:id="@+id/action_navigation_auth_to_navigation_login"
+            app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_navigation_auth_to_navigation_register"
+            app:destination="@id/navigation_register"
+            app:enterAnim="@anim/anim_slide_up"
+            app:exitAnim="@anim/anim_slide_down" />
+    </fragment>
+
+    <fragment
+        android:label="Finalize"
+        android:id="@+id/navigation_finalize"
+        tools:layout="@layout/fragment_finalize"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.finalize.FinalizeFragment"/>
+
+    <fragment
+        android:label="Location Services"
+        android:id="@+id/navigation_location"
+        tools:layout="@layout/fragment_location"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.location.LocationFragment">
+        <action
+            android:id="@+id/action_navigation_location_to_navigation_finalize"
+            app:destination="@id/navigation_finalize" />
+    </fragment>
+
+    <fragment
+        android:label="Welcome"
+        android:id="@+id/navigation_welcome"
+        tools:layout="@layout/fragment_welcome"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.welcome.WelcomeFragment">
+        <action
+            android:id="@+id/action_navigation_welcome_to_navigation_push"
+            app:destination="@id/navigation_push" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_push"
+        android:label="Push Notifications"
+        tools:layout="@layout/fragment_push"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.push.PushFragment">
+        <action
+            android:id="@+id/action_navigation_push_to_navigation_location"
+            app:destination="@id/navigation_location" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_register"
+        android:label="Register"
+        tools:layout="@layout/fragment_register"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.register.RegisterFragment">
+        <action
+            android:id="@+id/action_navigation_register_to_navigation_welcome"
+            app:destination="@id/navigation_welcome" />
+        <action
+            android:id="@+id/action_navigation_register_to_navigation_auth"
+            app:destination="@id/navigation_auth"
+            app:exitAnim="@anim/anim_slide_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.login.LoginFragment">
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_auth"
+            app:destination="@id/navigation_auth" />
+    </fragment>
+</navigation>
