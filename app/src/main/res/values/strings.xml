@@ -54,8 +54,6 @@
     <string name="title_plans">Plans</string>
     <string name="content_description_sign_in_button">Sign In Button</string>
     <string name="content_description_exit_sign_in">Exit Sign In</string>
-    <string name="google_client_id" translatable="false">757208315168-i578lk0j5gaok7f4avus7fhvd5jrpk4j.apps.googleusercontent.com</string>
-    <string name="google_client_secret" translatable="false">jKEd42sOwuWz_nz7VJXMX84I</string>
     <string name="prompt_reset_password">Forgot your password? Reset it.</string>
     <string name="title_rest_password">Oops! Reset Your Password Below.</string>
     <string name="reset">Check your email for reset link</string>

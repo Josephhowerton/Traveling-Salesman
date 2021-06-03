@@ -6,6 +6,7 @@ import android.animation.Animator
 import androidx.fragment.app.Fragment
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.josephhowerton.travelingsalesman.BuildConfig
 import androidx.lifecycle.ViewModelProvider
 import androidx.databinding.DataBindingUtil
 import android.josephhowerton.travelingsalesman.R
@@ -88,7 +89,7 @@ class AuthFragment : Fragment(), Animator.AnimatorListener {
         })
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.google_client_id))
+            .requestIdToken(BuildConfig.google_client_id)
             .requestEmail()
             .build()
 
