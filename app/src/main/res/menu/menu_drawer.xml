@@ -9,4 +9,12 @@
     <item android:id="@+id/navigation_settings"
         android:title="@string/title_user_preferences"/>
 
+    <item android:id="@+id/navigation_account"
+        android:title="@string/title_account_management"/>
+
+    <item android:id="@+id/navigation_settings"
+        android:title="@string/title_user_preferences"/>
+
+
+
 </menu>

@@ -1,21 +1,21 @@
 package android.josephhowerton.travelingsalesman.ui.auth.login
 
+import android.app.Application
+import android.josephhowerton.travelingsalesman.data.Repository
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import android.josephhowerton.travelingsalesman.data.LoginDataSource
-import android.josephhowerton.travelingsalesman.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
  * Required given LoginViewModel has a non-empty constructor
  */
-class LoginViewModelFactory : ViewModelProvider.Factory {
+class LoginViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(
-                    loginRepository = LoginRepository(dataSource = LoginDataSource())
+                    repository = Repository.getInstance(application)
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

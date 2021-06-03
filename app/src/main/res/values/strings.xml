@@ -2,15 +2,15 @@
     <string name="app_name">Traveling Salesman</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="data_header">Data</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
+    <string name="location_title">Enable Location Services</string>
+    <string name="push_title">Enable Push Notifications</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
@@ -45,4 +45,25 @@
     <string name="text_or">OR</string>
     <string name="title_sign_in_greeting">Welcome Back!\nWe\'re Glad To \nSee you</string>
     <string name="title_sign_in_message">Sign in and start planning your next memory</string>
+    <string name="farewell_header">See Ya Later!</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="delete_account">Delete</string>
+    <string name="update_location">Update Location Manually</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_plans">Plans</string>
+    <string name="content_description_sign_in_button">Sign In Button</string>
+    <string name="content_description_exit_sign_in">Exit Sign In</string>
+    <string name="google_client_id" translatable="false">757208315168-i578lk0j5gaok7f4avus7fhvd5jrpk4j.apps.googleusercontent.com</string>
+    <string name="google_client_secret" translatable="false">jKEd42sOwuWz_nz7VJXMX84I</string>
+    <string name="prompt_reset_password">Forgot your password? Reset it.</string>
+    <string name="title_rest_password">Oops! Reset Your Password Below.</string>
+    <string name="reset">Check your email for reset link</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reset_password_failed">Error: could not send password reset link</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
 </resources>

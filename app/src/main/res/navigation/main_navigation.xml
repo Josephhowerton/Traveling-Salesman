@@ -6,29 +6,36 @@
     app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_home"
         android:label="Home"
+        android:id="@+id/navigation_home"
         tools:layout="@layout/fragment_home"
         android:name="android.josephhowerton.travelingsalesman.ui.main.home.HomeFragment"/>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
         android:label="Dashboard"
+        android:id="@+id/navigation_dashboard"
         tools:layout="@layout/fragment_dashboard"
         android:name="android.josephhowerton.travelingsalesman.ui.main.dashboard.DashboardFragment"/>
+
     <fragment
-        android:id="@+id/navigation_account"
-        android:label="Account Management"
-        tools:layout="@layout/fragment_account"
-        android:name="android.josephhowerton.travelingsalesman.ui.main.account.AccountFragment"/>
-    <fragment
-        android:id="@+id/navigation_plans"
         android:label="Planned Trips"
+        android:id="@+id/navigation_plans"
         tools:layout="@layout/fragment_plans"
         android:name="android.josephhowerton.travelingsalesman.ui.main.plans.PlansFragment"/>
     <fragment
-        android:id="@+id/navigation_settings"
         android:label="User Preferences"
+        android:id="@+id/navigation_settings"
         android:name="android.josephhowerton.travelingsalesman.ui.main.settings.SettingsFragment"/>
+
+    <fragment
+        android:label="Account Management"
+        android:id="@+id/navigation_account"
+        android:name="android.josephhowerton.travelingsalesman.AccountManagementFragment" />
+
+    <fragment
+        android:label="Placeholder"
+        android:id="@+id/navigation_placeholder"
+        tools:layout="@layout/fragment_place_holder"
+        android:name="android.josephhowerton.travelingsalesman.PlaceHolderFragment"/>
 
 </navigation>

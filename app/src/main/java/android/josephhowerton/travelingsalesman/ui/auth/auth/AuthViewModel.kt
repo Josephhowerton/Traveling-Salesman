@@ -1,14 +1,24 @@
 package android.josephhowerton.travelingsalesman.ui.auth.auth
 
+import android.content.Intent
 import android.josephhowerton.travelingsalesman.R
+import android.josephhowerton.travelingsalesman.data.Repository
+import android.josephhowerton.travelingsalesman.data.auth.AuthResult
+import android.josephhowerton.travelingsalesman.data.auth.`interface`.AuthCompleteListener
+import android.josephhowerton.travelingsalesman.data.model.LoggedInUser
+import android.josephhowerton.travelingsalesman.ui.auth.login.LoggedInUserView
+import android.josephhowerton.travelingsalesman.ui.auth.register.RegisterResult
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlin.properties.Delegates
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.common.api.ApiException
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(private val repository: Repository) : ViewModel() {
 
+    private val _registerResult = MutableLiveData<RegisterResult>()
+    val registerResult: LiveData<RegisterResult> = _registerResult
 
     private val _signInWithEmail = MutableLiveData<Boolean>()
     val signInWithEmail: LiveData<Boolean>
@@ -30,11 +40,20 @@ class AuthViewModel : ViewModel() {
     val navigate: LiveData<Int?>
         get() = _navigate
 
-    var destination by Delegates.notNull<Int>()
+    private val _isLoading = MutableLiveData<Int>()
+    val isLoading: LiveData<Int> get() = _isLoading
+
+    var destination: Int
+    var isNewUser:Boolean = false
+
+    var email:String = ""
+    var password:String = ""
 
     init{
+        destination = -1
         _signUp.value = false
         _navigate.value = null
+        _isLoading.value = View.GONE
         _signInWithEmail.value = false
         _signInWithGoogle.value = false
     }
@@ -46,6 +65,8 @@ class AuthViewModel : ViewModel() {
     fun signInWithEmail(shouldGo: Boolean){
         if(shouldGo){
             _animate.value = shouldGo
+            _signInWithEmail.value = false
+            destination = R.id.navigation_login
         }
     }
 
@@ -54,9 +75,37 @@ class AuthViewModel : ViewModel() {
     }
 
 
-    fun signInWithGoogle(shouldGo: Boolean){
-        if(shouldGo){
-            _animate.value = shouldGo
+    fun signInWithGoogle(data: Intent?){
+        try {
+            _isLoading.value = View.VISIBLE
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            val account = task.getResult(ApiException::class.java)!!
+            repository.loginWithGoogle(account.idToken!!,object : AuthCompleteListener {
+                override fun onSuccess(result: AuthResult<LoggedInUser>) {
+                    _isLoading.value = View.GONE
+                    destination = R.id.action_navigation_auth_to_navigation_welcome
+                    if (result is AuthResult.Success) {
+                        _registerResult.value = RegisterResult(success = LoggedInUserView(displayName = result.data.displayName))
+                        isNewUser = result.data.isNewUser!!
+                    }
+                    _animate.value = true
+
+                }
+
+                override fun onFailed(result: AuthResult<LoggedInUser>) {
+                    _isLoading.value = View.GONE
+                    if (result is AuthResult.Error) {
+                        _registerResult.value = RegisterResult(message = result.exception.message)
+                    }
+                    else {
+                        _registerResult.value = RegisterResult(error = R.string.login_failed)
+                    }
+                }
+            })
+
+        } catch (e: ApiException) {
+            _isLoading.value = View.GONE
+            _registerResult.value = RegisterResult(error = R.string.login_failed)
         }
     }
 
@@ -66,13 +115,9 @@ class AuthViewModel : ViewModel() {
 
     fun signUp(shouldGo: Boolean){
         if(shouldGo){
+            _signUp.value = false
             _animate.value = shouldGo
-        }
-    }
-
-    fun animate(shouldAnimate: Boolean, whereTo: Int){
-        if(shouldAnimate){
-            destination = whereTo
+            destination = R.id.action_navigation_auth_to_navigation_register
         }
     }
 

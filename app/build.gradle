@@ -10,19 +10,26 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         applicationId "android.josephhowerton.travelingsalesman"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         if(hasProperty("amadeus_client_id")){
             buildConfigField("String", "amadeus_client_id", property("amadeus.api.key"))
         }
         if(hasProperty("amadeus_client_secret")){
             buildConfigField("String", "amadeus_client_secret", property("amadeus.api.secret"))
         }
+        if(hasProperty("google_client_id")){
+            buildConfigField("String", "google_client_id", property("google_client_id"))
+        }
+        if(hasProperty("google_client_secret")){
+            buildConfigField("String", "google_client_secret", property("google_client_secret"))
+        }
+
     }
 
     buildTypes {
@@ -46,6 +53,9 @@ android {
 
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.0.1')
+    implementation "io.reactivex.rxjava3:rxjava:3.0.7"
+    implementation "io.reactivex.rxjava3:rxkotlin:3.0.0"
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
     implementation 'androidx.appcompat:appcompat:1.3.0'
@@ -58,11 +68,13 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.preference:preference:1.1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.amadeus:amadeus-android:1.3.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

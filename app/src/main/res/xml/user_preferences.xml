@@ -1,0 +1,107 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <Preference
+            app:key="temp"
+            app:title="@string/delete_account"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="location_manual"
+            app:title="@string/update_location"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/data_header">
+
+        <SwitchPreferenceCompat
+            app:key="location_updates"
+            app:title="@string/location_title" />
+
+        <SwitchPreferenceCompat
+            app:key="push_notifications"
+            app:title="@string/push_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <Preference
+            app:key="temp"
+            app:title="@string/delete_account"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="location_manual"
+            app:title="@string/update_location"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/data_header">
+
+        <SwitchPreferenceCompat
+            app:key="location_updates"
+            app:title="@string/location_title" />
+
+        <SwitchPreferenceCompat
+            app:key="push_notifications"
+            app:title="@string/push_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <Preference
+            app:key="temp"
+            app:title="@string/delete_account"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="location_manual"
+            app:title="@string/update_location"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/data_header">
+
+        <SwitchPreferenceCompat
+            app:key="location_updates"
+            app:title="@string/location_title" />
+
+        <SwitchPreferenceCompat
+            app:key="push_notifications"
+            app:title="@string/push_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <Preference
+            app:key="temp"
+            app:title="@string/delete_account"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="location_manual"
+            app:title="@string/update_location"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/data_header">
+
+        <SwitchPreferenceCompat
+            app:key="location_updates"
+            app:title="@string/location_title" />
+
+        <SwitchPreferenceCompat
+            app:key="push_notifications"
+            app:title="@string/push_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

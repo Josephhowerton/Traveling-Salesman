@@ -1,5 +1,8 @@
 package android.josephhowerton.travelingsalesman.ui.auth.login
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.annotation.StringRes
@@ -14,15 +17,17 @@ import android.view.inputmethod.EditorInfo
 
 import android.josephhowerton.travelingsalesman.R
 import android.josephhowerton.travelingsalesman.databinding.FragmentLoginBinding
+import android.josephhowerton.travelingsalesman.ui.main.MainActivity
+import android.util.Log
 import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), Animator.AnimatorListener {
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var loginViewModel: LoginViewModel
+    private lateinit var viewModel: LoginViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
         return binding.root
@@ -30,47 +35,107 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
+        init()
+        initFormState()
+        initTextWatcher()
+    }
 
-        loginViewModel.navigateBack.observe(viewLifecycleOwner, {
-            loginViewModel.navigateBack(it)
+
+    private fun init(){
+        viewModel = ViewModelProvider(this, LoginViewModelFactory(requireActivity().application)).get(LoginViewModel::class.java)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        viewModel.animate.observe(viewLifecycleOwner, {
+            animate()
         })
+    }
 
-        loginViewModel.whereTo.observe(viewLifecycleOwner, {
-            if(it != null){
-                findNavController().navigate(it)
+    private fun animate(){
+        ObjectAnimator.ofFloat(binding.imageViewClose, "translationY", 10000f)
+            .apply {
+                duration = 750
+                start()
             }
-        })
 
-        loginViewModel.loginFormState.observe(viewLifecycleOwner,
-                Observer { loginFormState ->
-                    if (loginFormState == null) {
-                        return@Observer
-                    }
-                    binding.login.isEnabled = loginFormState.isDataValid
-                    loginFormState.usernameError?.let {
-                        binding.username.error = getString(it)
-                    }
-                    loginFormState.passwordError?.let {
-                        binding.password.error = getString(it)
-                    }
-                })
+        ObjectAnimator.ofFloat(binding.editTextEmail, "translationX", 20000f)
+            .apply {
+                duration = 500
+                start()
+            }
 
-        loginViewModel.loginResult.observe(viewLifecycleOwner,
-                Observer { loginResult ->
-                    loginResult ?: return@Observer
-                    binding.loading.visibility = View.GONE
-                    loginResult.error?.let {
-                        showLoginFailed(it)
-                    }
-                    loginResult.success?.let {
-                        updateUiWithUser(it)
-                    }
-                })
+        ObjectAnimator.ofFloat(binding.editTextPassword, "translationX", -20000f)
+            .apply {
+                duration = 500
+                startDelay = 250
+                start()
+            }
 
+        ObjectAnimator.ofFloat(binding.btnLogin,  "translationX", 20000f)
+            .apply {
+                duration = 500
+                startDelay = 250
+                start()
+            }
+
+        ObjectAnimator.ofFloat(binding.textViewGreeting, "alpha", 0f)
+            .apply {
+                duration = 500
+                startDelay = 250
+                start()
+            }
+
+        ObjectAnimator.ofFloat(binding.textViewResetPassword, "alpha", 0f)
+            .apply {
+                duration = 500
+                startDelay = 250
+                start()
+            }
+
+        ObjectAnimator.ofFloat(binding.textViewMessage, "alpha", 0f)
+            .apply {
+                duration = 500
+                startDelay = 250
+                start()
+            }
+            .addListener(this)
+    }
+
+    private fun initFormState(){
+        viewModel.loginFormState.observe(viewLifecycleOwner,
+            Observer { loginFormState ->
+                if (loginFormState == null) {
+                    return@Observer
+                }
+                binding.btnLogin.isEnabled = loginFormState.isDataValid
+                loginFormState.emailError?.let {
+                    binding.editTextEmail.error = getString(it)
+                }
+                loginFormState.passwordError?.let {
+                    binding.editTextPassword.error = getString(it)
+                }
+            })
+
+        viewModel.loginResult.observe(viewLifecycleOwner,
+            Observer { loginResult ->
+                loginResult ?: return@Observer
+                binding.loading.visibility = View.GONE
+                loginResult.error?.let {
+                    showLoginFailed(it)
+                }
+                loginResult.message?.let {
+                    showLoginFailed(it)
+                }
+                loginResult.success?.let {
+                    updateUiWithUser(it)
+                }
+            })
+    }
+
+    private fun initTextWatcher(){
         val afterTextChangedListener = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // ignore
+                viewModel.loginDataChanged()
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -78,36 +143,22 @@ class LoginFragment : Fragment() {
             }
 
             override fun afterTextChanged(s: Editable) {
-                loginViewModel.loginDataChanged(
-                        binding.username.text.toString(),
-                        binding.password.text.toString()
-                )
+                viewModel.loginDataChanged()
             }
-        }
-        binding.username.addTextChangedListener(afterTextChangedListener)
-        binding.password.addTextChangedListener(afterTextChangedListener)
-        binding.password.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                loginViewModel.login(
-                        binding.username.text.toString(),
-                        binding.password.text.toString()
-                )
-            }
-            false
         }
 
-        binding.login.setOnClickListener {
-            binding.loading.visibility = View.VISIBLE
-            loginViewModel.login(
-                    binding.username.text.toString(),
-                    binding.password.text.toString()
-            )
+        binding.editTextEmail.addTextChangedListener(afterTextChangedListener)
+        binding.editTextPassword.addTextChangedListener(afterTextChangedListener)
+        binding.editTextPassword.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.loginWithEmail()
+            }
+            false
         }
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
-        // TODO : initiate successful logged in experience
+        val welcome = "${getString(R.string.welcome)} ${model.displayName}"
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
     }
@@ -115,5 +166,34 @@ class LoginFragment : Fragment() {
     private fun showLoginFailed(@StringRes errorString: Int) {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+    }
+
+    private fun showLoginFailed(errorString: String) {
+        val appContext = context?.applicationContext ?: return
+        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+    }
+
+    private fun navigate(){
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
+    }
+
+    private fun navigate(whereTo: Int){
+        findNavController().navigate(whereTo)
+    }
+
+    override fun onAnimationStart(animation: Animator?) {
+    }
+
+    override fun onAnimationEnd(animation: Animator?) {
+        if(viewModel.destination == null) navigate()
+        else navigate(viewModel.destination!!)
+    }
+
+    override fun onAnimationCancel(animation: Animator?) {
+    }
+
+    override fun onAnimationRepeat(animation: Animator?) {
     }
 }

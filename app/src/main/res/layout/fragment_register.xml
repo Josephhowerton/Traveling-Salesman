@@ -14,6 +14,7 @@
         tools:context=".ui.auth.register.RegisterFragment">
 
         <ImageView
+            android:id="@+id/image_view_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -61,39 +62,42 @@
             app:layout_constraintGuide_percent=".925"/>
 
         <EditText
-            android:id="@+id/text_view_name"
+            android:id="@+id/edit_text_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:hint="@string/prompt_name"
+            android:text="@={viewModel.name}"
             android:background="@drawable/shape_edit_text"
-            app:layout_constraintBottom_toTopOf="@id/text_view_email"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_email"
             app:layout_constraintTop_toTopOf="@+id/guideline_top_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end_vertical_greeting"
             app:layout_constraintStart_toStartOf="@+id/guideline_start_vertical_greeting"/>
 
         <EditText
-            android:id="@+id/text_view_email"
+            android:id="@+id/edit_text_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:hint="@string/prompt_email_address"
+            android:text="@={viewModel.email}"
             android:inputType="textEmailAddress"
             android:background="@drawable/shape_edit_text"
-            app:layout_constraintTop_toBottomOf="@id/text_view_name"
-            app:layout_constraintBottom_toTopOf="@id/text_view_password"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_name"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_password"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end_vertical_greeting"
             app:layout_constraintStart_toStartOf="@+id/guideline_start_vertical_greeting"/>
 
         <EditText
-            android:id="@+id/text_view_password"
-            android:layout_width="0dp"
+            android:id="@+id/edit_text_password"
             android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:padding="12dp"
-            android:background="@drawable/shape_edit_text"
             android:hint="@string/prompt_password"
             android:inputType="textPassword"
-            app:layout_constraintTop_toBottomOf="@id/text_view_email"
+            android:text="@={viewModel.password}"
+            android:background="@drawable/shape_edit_text"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_email"
             app:layout_constraintBottom_toTopOf="@+id/guideline_middle_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end_vertical_greeting"
             app:layout_constraintStart_toStartOf="@+id/guideline_start_vertical_greeting"/>
@@ -147,6 +151,7 @@
         <ImageButton
             android:id="@+id/btn_google_auth"
             android:src="@drawable/ic_google_logo"
+            android:onClick="@{viewModel::onSignUpWithGoogle}"
             style="@style/Theme.TravelingSalesman.ButtonSolid"
             app:layout_constraintTop_toBottomOf="@+id/text_view_or"
             app:layout_constraintBottom_toTopOf="@+id/text_view_sign_in"
@@ -165,6 +170,22 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_google_auth"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end_vertical_greeting"
             app:layout_constraintStart_toStartOf="@+id/guideline_start_vertical_greeting" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            android:visibility="@{viewModel.isLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

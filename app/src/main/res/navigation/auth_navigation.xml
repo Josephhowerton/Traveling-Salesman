@@ -18,6 +18,9 @@
             app:destination="@id/navigation_register"
             app:enterAnim="@anim/anim_slide_up"
             app:exitAnim="@anim/anim_slide_down" />
+        <action
+            android:id="@+id/action_navigation_auth_to_navigation_welcome"
+            app:destination="@id/navigation_welcome" />
     </fragment>
 
     <fragment
@@ -76,5 +79,19 @@
         <action
             android:id="@+id/action_navigation_login_to_navigation_auth"
             app:destination="@id/navigation_auth" />
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_reset_password"
+            app:destination="@id/navigation_reset_password" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_reset_password"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.reset.ResetPasswordFragment">
+        <action
+            android:id="@+id/action_navigation_reset_password_to_navigation_login"
+            app:destination="@id/navigation_login" />
+    </fragment>
+
+
 </navigation>
