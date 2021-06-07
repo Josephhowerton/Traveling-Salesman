@@ -3,8 +3,8 @@ package android.josephhowerton.travelingsalesman.ui.auth.register
 import android.content.Intent
 import android.josephhowerton.travelingsalesman.R
 import android.josephhowerton.travelingsalesman.data.Repository
-import android.josephhowerton.travelingsalesman.data.auth.AuthResult
-import android.josephhowerton.travelingsalesman.data.auth.`interface`.AuthCompleteListener
+import android.josephhowerton.travelingsalesman.network.auth.AuthResult
+import android.josephhowerton.travelingsalesman.network.auth.interfaces.AuthCompleteListener
 import android.josephhowerton.travelingsalesman.data.model.LoggedInUser
 import android.josephhowerton.travelingsalesman.ui.auth.login.LoggedInUserView
 import android.util.Patterns

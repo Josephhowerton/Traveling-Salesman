@@ -1,0 +1,17 @@
+package android.josephhowerton.travelingsalesman.data.foursquare
+
+data class FoursquareLocation(
+        val address: String,
+        val cc: String,
+        val city: String,
+        val country: String,
+        val crossStreet: String,
+        val distance: Int,
+        val formattedAddress: List<String>,
+        val labeledLatLngs: List<FoursquareRecommendationLabeledLatLng>,
+        val lat: Double,
+        val lng: Double,
+        val neighborhood: String,
+        val postalCode: String,
+        val state: String
+)

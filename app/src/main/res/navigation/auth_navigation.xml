@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_navigation"
-    app:startDestination="@id/navigation_auth">
+    app:startDestination="@id/navigation_welcome">
 
     <fragment
         android:label="Authentication"
@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_navigation_location_to_navigation_finalize"
             app:destination="@id/navigation_finalize" />
+        <action
+            android:id="@+id/action_navigation_location_to_addLocationFragment"
+            app:destination="@id/navigation_add_location" />
     </fragment>
 
     <fragment
@@ -45,8 +48,8 @@
         tools:layout="@layout/fragment_welcome"
         android:name="android.josephhowerton.travelingsalesman.ui.auth.welcome.WelcomeFragment">
         <action
-            android:id="@+id/action_navigation_welcome_to_navigation_push"
-            app:destination="@id/navigation_push" />
+            android:id="@+id/action_navigation_welcome_to_pickInterestFragment"
+            app:destination="@id/navigation_interest" />
     </fragment>
 
     <fragment
@@ -91,6 +94,24 @@
         <action
             android:id="@+id/action_navigation_reset_password_to_navigation_login"
             app:destination="@id/navigation_login" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_location"
+        android:label="fragment_add_location"
+        tools:layout="@layout/fragment_add_location"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.location.AddLocationFragment">
+        <action
+            android:id="@+id/action_addLocationFragment_to_navigation_finalize"
+            app:destination="@id/navigation_finalize" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_interest"
+        android:label="fragment_pick_interest"
+        tools:layout="@layout/fragment_pick_interest"
+        android:name="android.josephhowerton.travelingsalesman.ui.auth.interest.PickInterestFragment">
+        <action
+            android:id="@+id/action_pickInterestFragment_to_navigation_push"
+            app:destination="@id/navigation_push" />
     </fragment>
 
 

@@ -2,10 +2,9 @@ package android.josephhowerton.travelingsalesman.ui.auth.reset
 
 import android.josephhowerton.travelingsalesman.R
 import android.josephhowerton.travelingsalesman.data.Repository
-import android.josephhowerton.travelingsalesman.data.auth.AuthResult
-import android.josephhowerton.travelingsalesman.data.auth.`interface`.ResetCompleteListener
+import android.josephhowerton.travelingsalesman.network.auth.AuthResult
+import android.josephhowerton.travelingsalesman.network.auth.interfaces.ResetCompleteListener
 import android.josephhowerton.travelingsalesman.ui.auth.login.LoginFormState
-import android.josephhowerton.travelingsalesman.ui.auth.register.RegisterFormState
 import android.util.Patterns
 import android.view.View
 import androidx.lifecycle.LiveData

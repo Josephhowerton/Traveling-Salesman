@@ -64,4 +64,22 @@
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
+    <string name="prompt_skip">Skip</string>
+
+    <string name="getting_started_title">Hey, There.</string>
+    <string name="getting_started_message">Thank you for checking out Suggestly, we hope our recommendations can make your life a little more fun.</string>
+
+    <string name="push_notifications_title">Never Miss an Update</string>
+    <string name="push_notification_messages">Receive notifications for hot upcoming events, invites to experiences, and new suggestions in your sphere.</string>
+
+    <string name="enable_location_services_title">Find Suggestions Nearby</string>
+    <string name="enable_location_services_message">Allow Location Services to find suggestions near you and access location-based features.</string>
+
+    <string name="add_location_title">Search For Your Location</string>
+    <string name="add_location_message">Many of the features used in this app relies on location. Search for a location above and pick from the list.</string>
+
+    <string name="finalize_finalizing_message">Finalizing.</string>
+    <string name="finalize_getting_location_message">Retrieving Your Location.</string>
+    <string name="finalize_getting_suggestions_message">Finding Suggestions Near You.</string>
+    <string name="finalize_personalizing_experience_message">Personalizing Your Experience.</string>
 </resources>

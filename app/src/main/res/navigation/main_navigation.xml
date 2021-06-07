@@ -30,7 +30,7 @@
     <fragment
         android:label="Account Management"
         android:id="@+id/navigation_account"
-        android:name="android.josephhowerton.travelingsalesman.AccountManagementFragment" />
+        android:name="android.josephhowerton.travelingsalesman.ui.main.settings.AccountManagementFragment" />
 
     <fragment
         android:label="Placeholder"

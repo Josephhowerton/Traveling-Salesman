@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import android.josephhowerton.travelingsalesman.data.auth.AuthResult
+import android.josephhowerton.travelingsalesman.network.auth.AuthResult
 
 import android.josephhowerton.travelingsalesman.R
 import android.josephhowerton.travelingsalesman.data.Repository
-import android.josephhowerton.travelingsalesman.data.auth.`interface`.AuthCompleteListener
+import android.josephhowerton.travelingsalesman.network.auth.interfaces.AuthCompleteListener
 import android.josephhowerton.travelingsalesman.data.model.LoggedInUser
 import android.view.View
 
@@ -54,14 +54,14 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
 
     fun loginWithEmail() {
         // can be launched in a separate asynchronous job
-        repository.loginWithEmail(email, password,object : AuthCompleteListener {
+        repository.loginWithEmail(email, password, object : AuthCompleteListener {
             override fun onSuccess(result: AuthResult<LoggedInUser>) {
                 if (result is AuthResult.Success) {
                     animate
                     _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
                 }
                 _animate.value = true
-                _isLoading.value = View.GONE
+
             }
 
             override fun onFailed(result: AuthResult<LoggedInUser>) {

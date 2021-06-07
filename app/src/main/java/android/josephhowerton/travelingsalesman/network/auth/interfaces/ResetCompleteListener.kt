@@ -1,6 +1,6 @@
-package android.josephhowerton.travelingsalesman.data.auth.`interface`
+package android.josephhowerton.travelingsalesman.network.auth.interfaces
 
-import android.josephhowerton.travelingsalesman.data.auth.AuthResult
+import android.josephhowerton.travelingsalesman.network.auth.AuthResult
 import android.josephhowerton.travelingsalesman.ui.auth.reset.ResetEmail
 
 interface ResetCompleteListener {

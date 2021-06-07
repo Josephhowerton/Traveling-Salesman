@@ -22,14 +22,21 @@ android {
         if(hasProperty("amadeus_client_id")){
             buildConfigField("String", "amadeus_client_id", property("amadeus.api.key"))
         }
-        if(hasProperty("amadeus_client_secret")){
-            buildConfigField("String", "amadeus_client_secret", property("amadeus.api.secret"))
-        }
+
         if(hasProperty("google_client_id")){
             buildConfigField("String", "google_client_id", property("google_client_id"))
         }
-        if(hasProperty("google_client_secret")){
-            buildConfigField("String", "google_client_secret", property("google_client_secret"))
+
+        if(hasProperty("foursquare_client_id")){
+            buildConfigField("String", "foursquare_client_id", property("foursquare_client_id"))
+        }
+
+        if(hasProperty("foursquare_client_secret")){
+            buildConfigField("String", "foursquare_client_secret", property("foursquare_client_secret"))
+        }
+
+        if(hasProperty("foursquare_version")){
+            buildConfigField("String", "foursquare_version", property("foursquare_version"))
         }
 
     }
@@ -67,10 +74,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -79,4 +87,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation("io.reactivex.rxjava3:rxkotlin:3.x.y")
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 }

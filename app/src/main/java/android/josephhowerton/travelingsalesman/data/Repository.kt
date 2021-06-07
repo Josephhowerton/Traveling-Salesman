@@ -1,12 +1,11 @@
 package android.josephhowerton.travelingsalesman.data
 
 import android.app.Application
-import android.josephhowerton.travelingsalesman.data.auth.AuthSource
-import android.josephhowerton.travelingsalesman.data.auth.`interface`.AuthCompleteListener
-import android.josephhowerton.travelingsalesman.data.auth.`interface`.ResetCompleteListener
+import android.josephhowerton.travelingsalesman.network.auth.AuthSource
+import android.josephhowerton.travelingsalesman.network.auth.interfaces.AuthCompleteListener
+import android.josephhowerton.travelingsalesman.network.auth.interfaces.ResetCompleteListener
+import android.josephhowerton.travelingsalesman.network.foursquare.FoursquareSource
 
-// @see https://developer.android.com/training/articles/keystore
-// TODO("credentials will be cached in local storage, it is recommended it be encrypted")
 class Repository private constructor(application: Application){
     companion object {
         private var instance: Repository? = null
@@ -18,9 +17,8 @@ class Repository private constructor(application: Application){
         }
     }
 
-
-    private val authSource: AuthSource
-        = AuthSource()
+    private val authSource: AuthSource = AuthSource()
+    private val foursquareSource: FoursquareSource = FoursquareSource()
 
     fun registerWithEmail(name: String, email: String, password: String, listener: AuthCompleteListener){
         authSource.registerWithEmail(email, password, listener)
@@ -39,5 +37,21 @@ class Repository private constructor(application: Application){
     }
 
     fun logout() = authSource.logout()
+
+
+    suspend fun getFoursquareCategories()
+        = foursquareSource.getFoursquareCategoriesAsync()
+
+    suspend fun searchFoursquareVenues()
+        = foursquareSource.searchFoursquareVenuesAsync()
+
+    suspend fun getSimilarFoursquareVenues(venueId: String)
+        = foursquareSource.getSimilarFoursquareVenuesAsync(venueId)
+
+    suspend fun getRecommendedFoursquareVenues()
+        = foursquareSource.getRecommendedFoursquareVenuesAsync()
+
+    suspend fun getFoursquareVenueDetails(venueId: String)
+        = foursquareSource.getFoursquareVenueDetailsAsync(venueId)
 
 }

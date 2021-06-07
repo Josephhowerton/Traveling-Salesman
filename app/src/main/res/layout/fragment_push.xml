@@ -1,15 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <data>
+        <variable
+            name="viewModel"
+            type="android.josephhowerton.travelingsalesman.ui.auth.push.PushViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.auth.push.PushFragment">
 
-        <TextView
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".075"/>
 
-    </FrameLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".925"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_middle_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".55"/>
+
+
+        <TextView
+            android:id="@+id/text_view_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_skip"
+            android:padding="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/green"
+            android:onClick="@{viewModel::onSkipClick}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end_vertical"/>
+
+
+        <TextView
+            android:id="@+id/text_view_greeting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/days_one"
+            android:text="@string/push_notifications_title"
+            app:layout_constraintBottom_toTopOf="@id/text_view_message"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end_vertical"
+            app:layout_constraintStart_toStartOf="@id/guideline_start_vertical"/>
+
+        <TextView
+            android:id="@+id/text_view_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto"
+            android:text="@string/push_notification_messages"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end_vertical"
+            app:layout_constraintStart_toStartOf="@id/guideline_start_vertical"
+            app:layout_constraintBottom_toTopOf="@id/guideline_middle_horizontal"/>
+
+        <ImageButton
+            android:id="@+id/btn_continue"
+            style="@style/Theme.TravelingSalesman.ButtonSolid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:enabled="false"
+            android:onClick="@{viewModel::onContinueClick}"
+            app:tint="@color/white"
+            android:src="@drawable/ic_baseline_navigate_next_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end_vertical"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_middle_horizontal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

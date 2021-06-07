@@ -3,6 +3,7 @@ package android.josephhowerton.travelingsalesman.ui.auth.register
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.josephhowerton.travelingsalesman.BuildConfig
 import android.josephhowerton.travelingsalesman.R
 import android.josephhowerton.travelingsalesman.app.Config
 import android.josephhowerton.travelingsalesman.databinding.FragmentRegisterBinding
@@ -96,7 +97,7 @@ class RegisterFragment : Fragment(), Animator.AnimatorListener {
         binding.lifecycleOwner = this
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.google_client_id))
+            .requestIdToken(BuildConfig.google_client_id)
             .requestEmail()
             .build()
 
